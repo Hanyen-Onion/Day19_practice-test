@@ -37,7 +37,7 @@
 "priority_level":"high",
 "status":"in_progress",
 "created_at":"Sun, 10/15/2023",
-"updated_at": "Sun, 10/15/2023"
+"updated_at":"Sun, 10/15/2023"
 },
 {
 "id":"0a809c6e-697f-49c9-a123-40a15ec7ade3",
@@ -103,7 +103,7 @@
 "id":"18c49f2c-09c4-48f9-bb9d-14b91e34df77",
 "name":"Optimize website SEO",
 "description":"Non odit est esse doloribus exercitationem pariatur natus. Qui excepturi aperiam saepe aut eaque.",
-"due_date":"Sun, 10/22/2024”,
+"due_date":"Sun, 10/22/2024",
 "priority_level":"high",
 "status":"in_progress",
 "created_at":"Sun, 10/15/2023",
@@ -111,7 +111,7 @@
 },
 {
 "id":"194d87aa-70e4-424e-a1d2-8cf09ad6a3e8",
-"name":"Study cyber"security",
+"name":"Study cyber security",
 "description":"Officiis asperiores veniam enim quia eveniet. Qui quae similique eos. Corporis non asperiores sit quidem.",
 "due_date":"Sun, 10/22/2024",
 "priority_level":"high",
@@ -145,7 +145,7 @@
 "description":"Reprehenderit facere dignissimos ut. Id et dicta ut provident. Consequuntur itaque odit qui minima ipsum assumenda et.",
 "due_date":"Sun, 10/22/2024",
 "priority_level":"medium",
-"status":"pending”,
+"status":"pending",
 "created_at":"Sun, 10/15/2023",
 "updated_at":"Sun, 10/15/2023"
 },
