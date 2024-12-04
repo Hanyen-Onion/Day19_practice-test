@@ -1,14 +1,34 @@
 package vttp.batchb.ssf.practice_test.models;
 
+import java.util.Date;
+
+import jakarta.validation.constraints.*;
+
 public class Project {
+    
+    @NotNull(message = "Id is required")
+    @Size( max = 50, message = "Id cannot be more than 50 characters")
     private String id;
+
+    @NotNull(message = "Name is required")
+    @Size( min = 10, max = 50, message = "Name cannot be more than 50 characters")
     private String projName;
+    
+    @Size( max = 255, message = "Description cannot be more than 255 characters")
     private String description;
-    private String dueDate;
+
     private String priority;
     private String status;
-    private String createdDate;
-    private String updateDate;
+
+    @FutureOrPresent
+    private Date dueDate;
+
+    private Date createdDate;
+    private Date updatedDate;
+
+    // private String dueDate;
+    // private String createdDate;
+    // private String updateDate;
     
     //getter setter
     public String getId() {    return id;}
@@ -20,24 +40,32 @@ public class Project {
     public String getDescription() {    return description;}
     public void setDescription(String description) {    this.description = description;}
     
-    public String getDueDate() {    return dueDate;}
-    public void setDueDate(String dueDate) {    this.dueDate = dueDate;}
-    
     public String getPriority() {    return priority;}
     public void setPriority(String priority) {    this.priority = priority;}
     
     public String getStatus() {    return status;}
     public void setStatus(String status) {    this.status = status;}
+
+    public Date getDueDate() {    return dueDate;}
+    public void setDueDate(Date dueDate) {    this.dueDate = dueDate;}
     
-    public String getCreatedDate() {    return createdDate;}
-    public void setCreatedDate(String createdDate) {    this.createdDate = createdDate;}
+    public Date getCreatedDate() {    return createdDate;}
+    public void setCreatedDate(Date createdDate) {    this.createdDate = createdDate;}
     
-    public String getUpdateDate() {    return updateDate;}
-    public void setUpdateDate(String updateDate) {    this.updateDate = updateDate;}
+    public Date getUpdatedDate() {    return updatedDate;}
+    public void setUpdatedDate(Date updateDate) {    this.updatedDate = updateDate;}
 
     @Override
     public String toString() {
-        return "Project name: %s".formatted(getProjName());
+        return "\n" +
+        "Id: %s\n".formatted(id) +
+        "ProjectName: %s\n".formatted(projName) +
+        "Description: %s\n".formatted(description) +
+        "DueDate: %s\n".formatted(dueDate) +
+        "Priority level: %s\n".formatted(priority) +
+        "Status: %s\n".formatted(status) +
+        "CreateDate: %s\n".formatted(createdDate) +
+        "UpdatedDate: %s\n".formatted(updatedDate); 
     }
     
 }

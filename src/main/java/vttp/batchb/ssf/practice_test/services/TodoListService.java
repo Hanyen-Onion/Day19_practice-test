@@ -1,6 +1,5 @@
 package vttp.batchb.ssf.practice_test.services;
 
-import java.io.BufferedReader;
 import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,8 +12,9 @@ import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
 import vttp.batchb.ssf.practice_test.models.Project;
-import vttp.batchb.ssf.practice_test.repositories.TodoListRepository;
 
+import vttp.batchb.ssf.practice_test.repositories.TodoListRepository;
+import static vttp.batchb.ssf.practice_test.utilities.TodoUtility.*;
 
 @Service
 public class TodoListService {
@@ -23,7 +23,6 @@ public class TodoListService {
     private TodoListRepository todoRepo;
 
     private static final String TXT = "src/main/resources/static/txt/todos.txt";
-    
     
     public List<Project> convertToJson() {
         
@@ -50,14 +49,16 @@ public class TodoListService {
 
                 Project project = new Project();
 
+                //convert string to date
+                project.setDueDate(stringToDate(project.getDueDate(), dueDate));
+                project.setCreatedDate(stringToDate(project.getCreatedDate(), createDate));
+                project.setUpdatedDate(stringToDate(project.getUpdatedDate(), updatedDate));
+
                 project.setId(id);
                 project.setProjName(name);
                 project.setDescription(description);
-                project.setDueDate(dueDate);
                 project.setPriority(priority);
                 project.setStatus(status);
-                project.setCreatedDate(createDate);
-                project.setUpdateDate(updatedDate);
 
                 taskList.add(project);
                 todoRepo.saveToRedis(project);
@@ -69,10 +70,6 @@ public class TodoListService {
         }
         return taskList;
     }
-    
-    
-    
-    
     
     public String readTxt() {
         
