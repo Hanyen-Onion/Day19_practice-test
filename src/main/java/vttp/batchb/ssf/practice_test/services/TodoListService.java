@@ -3,6 +3,8 @@ package vttp.batchb.ssf.practice_test.services;
 import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,14 @@ public class TodoListService {
 
     private static final String TXT = "src/main/resources/static/txt/todos.txt";
     
+    public Optional<Project> getProjectById(String id) {
+        return todoRepo.getProjectInfoById(id);
+    }
+
+    public Set<String> getIds() {
+        return todoRepo.getProjectIds();
+    }
+
     public List<Project> convertToJson() {
         
         String jsonString = readTxt();
@@ -63,7 +73,7 @@ public class TodoListService {
                 taskList.add(project);
                 todoRepo.saveToRedis(project);
             } 
-            System.out.println(taskList);  
+            //System.out.println(taskList);  
         
         } catch (Exception ex) {
             ex.printStackTrace();

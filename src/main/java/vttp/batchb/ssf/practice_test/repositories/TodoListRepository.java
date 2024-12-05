@@ -1,5 +1,6 @@
 package vttp.batchb.ssf.practice_test.repositories;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -33,6 +34,7 @@ public class TodoListRepository {
         //take project info out from redis and
         //make them into an Project object again
         Project result = new Project();
+
         result.setProjName(project.get("projName").toString());
         result.setDescription(project.get("description").toString());
         result.setDueDate(ephocToDate(project.get("dueDate")));

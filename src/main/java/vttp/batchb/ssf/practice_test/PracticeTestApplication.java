@@ -16,7 +16,8 @@ public class PracticeTestApplication implements CommandLineRunner {
     @Override 
     public void run(String...args) {
         todoSvc.convertToJson();
-    
+        //todoSvc.getIds();
+        
     }
 
 	public static void main(String[] args) {

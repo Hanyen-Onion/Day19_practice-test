@@ -18,8 +18,12 @@ public class TodoUtility {
 
     //obj -> date
     public static Date ephocToDate(Object ephoch) {
-        return (Date)ephoch;
+        Long toDate = ((Long)ephoch);
+        Date date = new Date(toDate);
+        return date;
     }
+
+    
 
     public static Date stringToDate(Date date, String string) {
     // date = Sun Mar 10 00:00:00 GMT+08:00 2024 (in seconds)
