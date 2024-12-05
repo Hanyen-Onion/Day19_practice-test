@@ -11,11 +11,21 @@
 
     <div>
       <div>
-        <form>
+        <form method="GET" action="/listing">
           <table>
             <tr>
-              <td>priority level:</td>
-              <select></select>
+              <td>Status:</td>
+              <td>
+                <select class="form-select" name="status">
+                  <option value="pending" selected>Pending</option>
+                  <option value="started">Started</option>
+                  <option value="in_progress">In progress</option>
+                  <option value="completed">Completed</option>
+                </select>
+              </td>
+              <td>
+                <button type="submit">Filter</button>
+              </td>
             </tr>
           </table>
         </form>
@@ -32,20 +42,41 @@
             <td>Updated Date</td>
           </thead>
           <tbody>
-            <tr data-th-each="obj:${projList}">
-              <td>
-                <span data-th-text="${obj.projName}"></span>
-                <br>
-                <span data-th-text="${obj.id}"></span>
-              </td>
-              
-              <td><span data-th-text="${obj.description}"></span></td>
-              <td><span data-th-text="${obj.dueDate}"></span></td>
-              <td><span data-th-text="${obj.priority}"></span></td>
-              <td><span data-th-text="${obj.status}"></span></td>
-              <td><span data-th-text="${obj.createdDate}"></span></td>
-              <td><span data-th-text="${obj.updatedDate}"></span></td>
-            </tr>
+            <!-- filter -->
+            <div>
+              <tr data-th-each="obj:${filteredList}" data-th-if="${stat!= null}">
+                <td>
+                  <span data-th-text="${obj.projName}"></span>
+                  <br>
+                  <span data-th-text="${obj.id}"></span>
+                </td>
+                
+                <td><span data-th-text="${obj.description}"></span></td>
+                <td><span data-th-text="${obj.dueDate}"></span></td>
+                <td><span data-th-text="${obj.priority}"></span></td>
+                <td><span data-th-text="${obj.status}"></span></td>
+                <td><span data-th-text="${obj.createdDate}"></span></td>
+                <td><span data-th-text="${obj.updatedDate}"></span></td>
+              </tr>
+            </div>
+
+            <div>
+              <tr data-th-each="obj:${projList}" data-th-unless="${stat != null}">
+                <td>
+                  <span data-th-text="${obj.projName}"></span>
+                  <br>
+                  <span data-th-text="${obj.id}"></span>
+                </td>
+                
+                <td><span data-th-text="${obj.description}"></span></td>
+                <td><span data-th-text="${obj.dueDate}"></span></td>
+                <td><span data-th-text="${obj.priority}"></span></td>
+                <td><span data-th-text="${obj.status}"></span></td>
+                <td><span data-th-text="${obj.createdDate}"></span></td>
+                <td><span data-th-text="${obj.updatedDate}"></span></td>
+              </tr>
+            </div>
+
           </tbody>
         </table>
 

@@ -5,8 +5,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 
 import jakarta.json.Json;
@@ -25,9 +28,37 @@ public class TodoListService {
     private TodoListRepository todoRepo;
 
     private static final String TXT = "src/main/resources/static/txt/todos.txt";
+
+    public List<Project> filterByStatus(String status) {
+
+        List<Project> projList = getProjects();
+        //System.out.println(projList);
+
+        List<Project> statusFilter = projList
+            .stream()
+            .filter(proj -> proj.getStatus().equals(status))
+            .collect(Collectors.toList());
+        //System.out.println(priorityFilter);
+        
+        return statusFilter;
+    }
     
-    public Optional<Project> getProjectById(String id) {
-        return todoRepo.getProjectInfoById(id);
+    public List<Project> getProjects() {
+
+        Set<String> ids = getIds();
+        List<Project> projectList = new LinkedList<>();
+
+        ids.forEach(i -> {
+            Optional<Project> opt = todoRepo.getProjectInfoById(i);
+        
+            if (opt.isEmpty()) 
+                System.out.println("not-found");
+
+            Project proj = opt.get();
+            projectList.add(proj);  
+        });
+
+        return projectList;
     }
 
     public Set<String> getIds() {
