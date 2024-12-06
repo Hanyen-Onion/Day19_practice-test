@@ -1,15 +1,18 @@
 package vttp.batchb.ssf.practice_test.services;
 
 import java.io.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.stream.Collector;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 
 import jakarta.json.Json;
@@ -28,6 +31,9 @@ public class TodoListService {
     private TodoListRepository todoRepo;
 
     private static final String TXT = "src/main/resources/static/txt/todos.txt";
+
+   
+
 
     public List<Project> filterByStatus(String status) {
 
@@ -102,7 +108,7 @@ public class TodoListService {
                 project.setStatus(status);
 
                 taskList.add(project);
-                todoRepo.saveToRedis(project);
+                save(project);
             } 
             //System.out.println(taskList);  
         
@@ -110,6 +116,16 @@ public class TodoListService {
             ex.printStackTrace();
         }
         return taskList;
+    }
+
+    public void save(Project project) {
+
+        if (project.getId() == null) {
+
+            String id = UUID.randomUUID().toString();
+            project.setId(id);
+        }
+        todoRepo.saveToRedis(project);
     }
     
     public String readTxt() {

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>create new project</title>
+</head>
+<body>
+    <h1>Add new project</h1>
+
+    <form method="POST" action="/listing">
+        <table>
+            <tr>
+                <td>Project:</td>
+                <td>
+                    <input type="text" name="projName">
+                </td>
+            </tr>
+            <tr>
+                <td>Description:</td>
+                <td>
+                    <input type="text" name="description">
+                </td>
+            </tr>
+            <tr>
+                <td>Due Date:</td>
+                <td>
+                    <input type="date" name="dueDate"> 
+                </td>
+            </tr>
+            <tr>
+                <td>priority</td>
+                <td>
+                    <select class="form-select" name="priority">
+                        <option value="low" selected>Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Status:</td>
+                <td>
+                    <select class="form-select" name="status">
+                        <option value="pending" selected>Pending</option>
+                        <option value="started">Started</option>
+                        <option value="in_progress">In progress</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button type="submit">Add</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

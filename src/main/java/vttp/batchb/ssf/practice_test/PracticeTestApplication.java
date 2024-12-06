@@ -1,5 +1,8 @@
 package vttp.batchb.ssf.practice_test;
 
+import java.text.ParseException;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -16,11 +19,9 @@ public class PracticeTestApplication implements CommandLineRunner {
     @Override 
     public void run(String...args) {
         todoSvc.convertToJson();
-        //todoSvc.filterByPriority("low");
-        
     }
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 		SpringApplication.run(PracticeTestApplication.class, args);
 	}
 

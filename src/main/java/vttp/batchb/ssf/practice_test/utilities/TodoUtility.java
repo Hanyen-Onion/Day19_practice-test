@@ -23,20 +23,16 @@ public class TodoUtility {
         return date;
     }
 
-    
-
     public static Date stringToDate(Date date, String string) {
-    // date = Sun Mar 10 00:00:00 GMT+08:00 2024 (in seconds)
-    DateFormat df = new SimpleDateFormat("EEE, mm/DD/yyyy");
+        // date = Sun Mar 10 00:00:00 GMT+08:00 2024 (in seconds)
+        DateFormat df = new SimpleDateFormat("EEE, mm/DD/yyyy");
 
-    //to get milliseconds
-    //DateFormat df = new SimpleDateFormat("MMM dd yyyy HH:mm:ss.SSS");
-    try {
-        date = df.parse(string);
-    } catch (ParseException e) {
-        e.printStackTrace();
-    }        
-    return date;
-}
+        try {
+            date = df.parse(string);
+        } catch (ParseException e) {
+            //e.printStackTrace();
+        }        
+        return date;
+    }
     
 }
