@@ -8,45 +8,65 @@
 <body>
     <h1>Add new project</h1>
 
-    <form method="POST" action="/listing">
+    <form method="POST" action="/listing" data-th-object="${project}">
         <table>
             <tr>
                 <td>Project:</td>
                 <td>
-                    <input type="text" name="projName">
+                    <input type="text" name="projName" data-th-field="*{projName}">
+                    <span 
+                        data-th-if="${#fields.hasErrors('projName')}"
+                        data-th-errors="*{projName}" data-th-errorclass="error">
+                    </span>
                 </td>
             </tr>
             <tr>
                 <td>Description:</td>
                 <td>
-                    <input type="text" name="description">
+                    <input type="text" name="description" data-th-field="*{description}">
+                    <span 
+                        data-th-if="${#fields.hasErrors('description')}"
+                        data-th-errors="*{description}" data-th-errorclass="error">
+                    </span>
                 </td>
             </tr>
             <tr>
                 <td>Due Date:</td>
                 <td>
-                    <input type="date" name="dueDate"> 
+                    <input type="date" name="dueDate" data-th-field="*{dueDate}"> 
+                    <span 
+                        data-th-if="${#fields.hasErrors('dueDate')}"
+                        data-th-errors="*{dueDate}" data-th-errorclass="error">
+                    </span>
                 </td>
             </tr>
             <tr>
                 <td>priority</td>
                 <td>
-                    <select class="form-select" name="priority">
+                    <select class="form-select" name="priority" data-th-field="*{priority}">
                         <option value="low" selected>Low</option>
                         <option value="medium">Medium</option>
                         <option value="high">High</option>
                     </select>
+                    <span 
+                       data-th-if="${#fields.hasErrors('priority')}"
+                       data-th-errors="*{priority}" data-th-errorclass="error">
+                    </span>
                 </td>
             </tr>
             <tr>
                 <td>Status:</td>
                 <td>
-                    <select class="form-select" name="status">
+                    <select class="form-select" name="status" data-th-field="*{status}">
                         <option value="pending" selected>Pending</option>
                         <option value="started">Started</option>
                         <option value="in_progress">In progress</option>
                         <option value="completed">Completed</option>
                     </select>
+                    <span 
+                        data-th-if="${#fields.hasErrors('status')}"
+                        data-th-errors="*{status}" data-th-errorclass="error">
+                    </span>
                 </td>
             </tr>
             <tr>

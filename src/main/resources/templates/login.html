@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login page</title>
+</head>
+<body>
+    <h1>Login</h1>
+
+    <form method="POST" action="/listing/login" data-th-object="${login}">
+        <table>
+            <tr>
+                <td>Name:</td>
+                <td>
+                    <input type="text" name="name" data-th-field="*{name}">
+                </td>
+            </tr>
+            <tr>
+                <td>Age:</td>
+                <td>
+                    <input type="number" name="age" data-th-field="*{age}">
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button type="submit">Login</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</body>
+</html>

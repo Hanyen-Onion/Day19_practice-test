@@ -5,11 +5,29 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import jakarta.servlet.http.HttpSession;
+import vttp.batchb.ssf.practice_test.models.Login;
+
 public class TodoUtility {
 
-    //update time everytime an entry has been manipulated
-    
+    public static final String LOGIN = "login";
 
+    //get sess
+    public static Login getLoginInfo(HttpSession sess) {
+         //get session
+       Login loginInfo = (Login)sess.getAttribute(LOGIN);
+       // Initialize the session if it is a new session
+       if (null == loginInfo) {
+
+           loginInfo = new Login();
+           System.out.println("check loginInfo Obj because null "+ loginInfo);
+           sess.setAttribute(LOGIN, loginInfo);
+       }
+        System.out.println("session is not null anymore " + sess.toString());
+
+        return loginInfo;
+    }
+    
     //date -> long
     //to ephochmilliseconds
     public static Long dateToEphoch(Date date) {
