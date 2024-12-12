@@ -6,33 +6,55 @@
     <title>create new project</title>
 </head>
 <body>
-    <h1>Add new project</h1>
+    <h1>Add/edit project</h1>
 
-    <form method="POST" action="/listing" data-th-object="${project}">
+    <form method="POST" action="/add" data-th-object="${project}">
         <table>
             <tr>
                 <td>Project:</td>
                 <td>
                     <input type="text" name="projName" data-th-field="*{projName}">
-                    <span 
-                        data-th-if="${#fields.hasErrors('projName')}"
-                        data-th-errors="*{projName}" data-th-errorclass="error">
-                    </span>
+                </td>
+                <td>
+                    <p 
+                    data-th-if="${#fields.hasErrors('projName')}"
+                    data-th-errors="*{projName}" data-th-errorclass="error">
+                    <ul>
+                        <li data-th-each="err:${#fields.hasErrors('projName')}">
+                            <span data-th-text="${err}" class="error"></span>
+                        </li>
+                    </ul>
+                </p>
                 </td>
             </tr>
             <tr>
                 <td>Description:</td>
                 <td>
                     <input type="text" name="description" data-th-field="*{description}">
-                    <span 
+                    <p 
                         data-th-if="${#fields.hasErrors('description')}"
                         data-th-errors="*{description}" data-th-errorclass="error">
-                    </span>
+                        <ul>
+                            <li data-th-each="err:${#fields.hasErrors('description')}">
+                                <span data-th-text="${err}" class="error"></span>
+                            </li>
+                        </ul>
+                    </p>
                 </td>
             </tr>
             <tr>
                 <td>Due Date:</td>
-                <td>
+
+                <!-- edit previous project -->
+                <td data-th-if="${project != null}">
+                    <input type="date" name="dueDate" data-th-value="${dueDate}"> 
+                    <span 
+                        data-th-if="${#fields.hasErrors('dueDate')}"
+                        data-th-errors="*{dueDate}" data-th-errorclass="error">
+                    </span>
+                </td>
+                <!-- add new project -->
+                <td data-th-unless="${project != null}">
                     <input type="date" name="dueDate" data-th-field="*{dueDate}"> 
                     <span 
                         data-th-if="${#fields.hasErrors('dueDate')}"

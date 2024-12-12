@@ -11,7 +11,7 @@
 
     <div>
       <div>
-        <form method="GET" action="/listing">
+        <form>
           <table>
             <tr>
               <td>Status:</td>
@@ -24,7 +24,7 @@
                 </select>
               </td>
               <td>
-                <button type="submit">Filter</button>
+                <button type="submit" formmethod="GET" formaction="/listing">Filter</button>
               </td>
             </tr>
           </table>
@@ -40,6 +40,7 @@
             <td>Status</td>
             <td>Created Date</td>
             <td>Updated Date</td>
+            <td>Edit/Delete</td>
           </thead>
           <tbody>
             <!-- filter -->
@@ -57,6 +58,14 @@
                 <td><span data-th-text="${obj.status}"></span></td>
                 <td><span data-th-text="${obj.createdDate}"></span></td>
                 <td><span data-th-text="${obj.updatedDate}"></span></td>
+                <td>
+                  <a data-th-href="@{/add/{id}(id=${obj.id})}">
+                    <button>Edit</button>
+                  </a>
+                  <!-- <a data-th-href=""> -->
+                    <button>Delete</button>
+                  <!-- </a> -->
+                </td>
               </tr>
             </div>
 
@@ -74,6 +83,14 @@
                 <td><span data-th-text="${obj.status}"></span></td>
                 <td><span data-th-text="${obj.createdDate}"></span></td>
                 <td><span data-th-text="${obj.updatedDate}"></span></td>
+                <td>
+                  <a data-th-href="@{/add/{id}(id=${obj.id})}">
+                    <button>Edit</button>
+                  </a>
+                  <!-- <a data-th-href=""> -->
+                    <button>Delete</button>
+                  <!-- </a> -->
+                </td>
               </tr>
             </div>
 

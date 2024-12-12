@@ -1,6 +1,5 @@
 package vttp.batchb.ssf.practice_test.repositories;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -20,6 +19,11 @@ public class TodoListRepository {
     
     @Autowired @Qualifier("redis-object")
     private RedisTemplate<String, Object> template;
+
+    //del key(id)
+    public void deleteProjectById(String id) {
+        template.delete(id); 
+    }
 
     //hgetall key(id)
     public Optional<Project> getProjectInfoById(String id) {

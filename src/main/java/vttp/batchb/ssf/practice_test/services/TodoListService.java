@@ -1,10 +1,6 @@
 package vttp.batchb.ssf.practice_test.services;
 
 import java.io.*;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -30,14 +26,29 @@ public class TodoListService {
     @Autowired
     private TodoListRepository todoRepo;
 
-    private static final String TXT = "src/main/resources/static/txt/todos.txt";
+    private static final String TXT = "/static/txt/todos.txt";
 
+    public void delProject(String id) {
+        todoRepo.deleteProjectById(id);
+    }
+
+    public Project getProjById(String id) {
+
+        Optional<Project> opt = todoRepo.getProjectInfoById(id);
+        if (opt.isEmpty()) {
+            System.out.println("not-found");
+        }
+        
+        Project proj = opt.get();
+        //proj.setDueDate(formatToHtmlDate(proj.getDueDate()));
+        System.out.println(proj.getDueDate());
+
+        return proj;
+    }
    
-
-
     public List<Project> filterByStatus(String status) {
 
-        List<Project> projList = getProjects();
+        List<Project> projList = getAllProjects();
         //System.out.println(projList);
 
         List<Project> statusFilter = projList
@@ -49,7 +60,7 @@ public class TodoListService {
         return statusFilter;
     }
     
-    public List<Project> getProjects() {
+    public List<Project> getAllProjects() {
 
         Set<String> ids = getIds();
         List<Project> projectList = new LinkedList<>();
@@ -96,10 +107,10 @@ public class TodoListService {
 
                 Project project = new Project();
 
-                //convert string to date
-                project.setDueDate(stringToDate(project.getDueDate(), dueDate));
-                project.setCreatedDate(stringToDate(project.getCreatedDate(), createDate));
-                project.setUpdatedDate(stringToDate(project.getUpdatedDate(), updatedDate));
+                //convert string from jsonto date
+                project.setDueDate(stringToDateJson(dueDate));
+                project.setCreatedDate(stringToDateJson(createDate));
+                project.setUpdatedDate(stringToDateJson(updatedDate));
 
                 project.setId(id);
                 project.setProjName(name);
@@ -129,11 +140,11 @@ public class TodoListService {
     }
     
     public String readTxt() {
-        
-        File file = new File(TXT);
         StringBuilder sb = new StringBuilder();
+       
         try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
+            InputStream is = getClass().getResourceAsStream(TXT);
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
             String line = "";
 
             while( (line = br.readLine()) != null) {
@@ -152,3 +163,4 @@ public class TodoListService {
         return sb.toString();
     }
 }
+

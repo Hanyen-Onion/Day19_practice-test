@@ -1,7 +1,6 @@
 package vttp.batchb.ssf.practice_test.utilities;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -11,6 +10,15 @@ import vttp.batchb.ssf.practice_test.models.Login;
 public class TodoUtility {
 
     public static final String LOGIN = "login";
+
+    //casting stored date back to date field in html
+    public static String dateToString(Date date) {
+        
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String dateForHtml = df.format(date);
+        
+        return dateForHtml;
+    }
 
     //get sess
     public static Login getLoginInfo(HttpSession sess) {
@@ -23,11 +31,11 @@ public class TodoUtility {
            System.out.println("check loginInfo Obj because null "+ loginInfo);
            sess.setAttribute(LOGIN, loginInfo);
        }
-        System.out.println("session is not null anymore " + sess.toString());
+        //System.out.println("session is not null anymore " + sess.toString());
 
         return loginInfo;
     }
-    
+
     //date -> long
     //to ephochmilliseconds
     public static Long dateToEphoch(Date date) {
@@ -40,17 +48,31 @@ public class TodoUtility {
         Date date = new Date(toDate);
         return date;
     }
-
-    public static Date stringToDate(Date date, String string) {
-        // date = Sun Mar 10 00:00:00 GMT+08:00 2024 (in seconds)
-        DateFormat df = new SimpleDateFormat("EEE, mm/DD/yyyy");
-
+    //for html date
+    public static Date stringToDateHtml(String string) {
+        //date = 2024-12-20
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        
         try {
-            date = df.parse(string);
-        } catch (ParseException e) {
-            //e.printStackTrace();
-        }        
-        return date;
+            Date date = df.parse(string);
+            return date;
+        } catch (Exception x) {
+            System.out.println("html date parsing error");
+        }
+        return null;
+    }
+
+    //for json only
+    public static Date stringToDateJson(String string) {
+        // date = Sun, 10/15/2023
+        DateFormat df = new SimpleDateFormat("EEE, MM/dd/yyyy");
+        try {
+            Date date = df.parse(string);
+            return date;
+        } catch (Exception ex) {
+            System.out.println("json date parsing error");
+        }
+        return null;
     }
     
 }

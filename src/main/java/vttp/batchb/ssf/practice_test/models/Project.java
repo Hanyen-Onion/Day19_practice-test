@@ -25,10 +25,6 @@ public class Project {
 
     private Date createdDate;
     private Date updatedDate;
-
-    // private String dueDate;
-    // private String createdDate;
-    // private String updateDate;
     
     //getter setter
     public String getId() {    return id;}
